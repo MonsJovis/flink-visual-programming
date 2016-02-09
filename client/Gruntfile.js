@@ -462,14 +462,11 @@
     ]);
 
     grunt.registerTask('test', [
-        'clean:server',
-        'bower',
-        'less',
-        'wiredep',
-        'postcss:serve',
-        'connect:test',
         'jshint:all',
-		'karma:test',
+        'karma:test'
+    ]);
+
+    grunt.registerTask('e2e-test', [
         'protractor:test'
     ]);
 

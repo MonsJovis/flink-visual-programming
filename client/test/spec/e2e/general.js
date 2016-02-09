@@ -1,6 +1,6 @@
 'use strict';
 
-var appDomain = 'http://localhost:9001';
+var appDomain = 'http://localhost:8080';
 
 describe('Flink Visual App', function() {
 

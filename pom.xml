@@ -211,10 +211,21 @@
                         <goals>
                             <goal>grunt</goal>
                         </goals>
-                        <phase>generate-resources</phase>
+                        <phase>test</phase>
                         <configuration>
                             <arguments>test --no-color</arguments>
                         </configuration>
+                    </execution>
+
+                    <execution>
+                      <id>grunt e2e-test</id>
+                      <goals>
+                        <goal>grunt</goal>
+                      </goals>
+                      <phase>integration-test</phase>
+                      <configuration>
+                        <arguments>e2e-test --no-color</arguments>
+                      </configuration>
                     </execution>
 
                     <execution>
@@ -250,26 +261,48 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty-version}</version>
-                <configuration>
-                    <webApp>
-                        <contextPath>${jetty-context-path}</contextPath>
-                    </webApp>
-                    <reload>automatic</reload>
-                    <scanIntervalSeconds>60</scanIntervalSeconds>
-                    <jettyXml>${project.basedir}/src/main/webapp/WEB-INF/jetty.xml</jettyXml>
-                    <scanTargets>
-                        <scanTarget>target/classes</scanTarget>
-                    </scanTargets>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>jetty.logs</name>
-                            <value>${log4j-dir}</value>
-                        </systemProperty>
-                    </systemProperties>
-                </configuration>
+              <groupId>org.eclipse.jetty</groupId>
+              <artifactId>jetty-maven-plugin</artifactId>
+              <version>${jetty-version}</version>
+              <configuration>
+                <webApp>
+                  <contextPath>${jetty-context-path}</contextPath>
+                </webApp>
+                <reload>automatic</reload>
+                <scanIntervalSeconds>60</scanIntervalSeconds>
+                <jettyXml>${project.basedir}/src/main/webapp/WEB-INF/jetty.xml</jettyXml>
+                <scanTargets>
+                  <scanTarget>target/classes</scanTarget>
+                </scanTargets>
+                <systemProperties>
+                  <systemProperty>
+                    <name>jetty.logs</name>
+                    <value>${log4j-dir}</value>
+                  </systemProperty>
+                </systemProperties>
+                <scanIntervalSeconds>10</scanIntervalSeconds>
+                <stopKey>foo</stopKey>
+                <stopPort>9999</stopPort>
+              </configuration>
+              <executions>
+                <execution>
+                  <id>start-jetty</id>
+                  <phase>pre-integration-test</phase>
+                  <goals>
+                    <goal>start</goal>
+                  </goals>
+                  <configuration>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>stop-jetty</id>
+                  <phase>post-integration-test</phase>
+                  <goals>
+                    <goal>stop</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
         </plugins>
     </build>
