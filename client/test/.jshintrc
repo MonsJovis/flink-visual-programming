@@ -7,6 +7,8 @@
         "describe": false,
         "beforeEach": false,
         "expect": false,
-        "inject": false
+        "inject": false,
+        "element": false,
+        "by": false
     }
 }

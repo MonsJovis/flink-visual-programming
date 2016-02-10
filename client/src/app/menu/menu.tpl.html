@@ -12,9 +12,9 @@
     </div>
 
     <ul class="nav navbar-top-links navbar-right" ng-controller="MenuNavbarTopCtrl">
-        <li><a class="new-section" ng-click="runGraph()"><i class="fa fa-play-circle text-primary"></i> Deploy &amp; Run</a></li>
-        <li><a ng-click="getCode()"><i class="fa fa-download"></i> Code</a></li>
-        <li><a ng-click="getJar()"><i class="fa fa-download"></i> Jar</a></li>
+        <li><a class="new-section navbar-btn-deploy-run" ng-click="runGraph()"><i class="fa fa-play-circle text-primary"></i> Deploy &amp; Run</a></li>
+        <li><a class="navbar-btn-download-code" ng-click="getCode()"><i class="fa fa-download"></i> Code</a></li>
+        <li><a class="navbar-btn-download-jar" ng-click="getJar()"><i class="fa fa-download"></i> Jar</a></li>
         <li><a class="new-section" ng-click="clearGraph()"><i class="fa fa-undo"></i> Reset</a></li>
         <li><a class="new-section" ng-href="{{exportHref}}" download="export.json" ng-click="exportGraph()"><i class="fa fa-sign-out"></i> Export</a></li>
         <li>
