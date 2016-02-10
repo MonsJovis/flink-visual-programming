@@ -293,6 +293,9 @@
                   </goals>
                   <configuration>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <httpConnector>
+                      <port>9000</port>
+                    </httpConnector>
                   </configuration>
                 </execution>
                 <execution>
